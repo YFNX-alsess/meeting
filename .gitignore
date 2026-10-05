@@ -90,3 +90,4 @@ obj/
 *.so
 *.dylib
 *.dll
+.env

@@ -1,9 +1,10 @@
+import os
 import requests
 import json
 
 # 1. 配置你的凭证
-API_KEY = "app-4wNmoZB0KybZ4xUyX9H6469H" # 替换为你刚才复制的 API Key
-BASE_URL = "http://localhost/v1" # 替换为你的 Dify 地址
+API_KEY = os.getenv("DIFY_API_KEY") # 替换为你刚才复制的 API Key
+BASE_URL = os.getenv("DIFY_BASE_URL") # 替换为你的 Dify 地址
 USER_ID = "abc-123" # 随便填一个唯一标识用户的字符串即可
 
 # 2. 设置请求头 (Headers) - 用于鉴权
