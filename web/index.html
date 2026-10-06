@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的 AI 助手</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🤖 我的 Dify 助手</h1>
+    <p id="status-line" class="status">正在检查后端状态…</p>
+
+    <section class="panel">
+        <h2>🖼️ YOLO 图片识别</h2>
+        <div class="input-area">
+            <input type="file" id="image-input" accept="image/*">
+            <button type="button" id="detect-btn">上传并识别</button>
+        </div>
+        <ul id="detect-result" class="result"></ul>
+    </section>
+
+    <section class="panel">
+        <h2>💬 对话</h2>
+        <div id="chat-box" class="chat-box"></div>
+        <form id="chat-form" class="input-area">
+            <input type="text" id="user-input" placeholder="输入你的问题..." autocomplete="off">
+            <button type="submit" id="send-btn">发送</button>
+        </form>
+    </section>
+
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

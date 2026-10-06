@@ -1,11 +1,6 @@
 # ---- 操作系统 ----
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
 Thumbs.db
-ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
@@ -17,44 +12,17 @@ $RECYCLE.BIN/
 *.swp
 *.swo
 *~
-.project
-.classpath
 
-# ---- 日志与临时文件 ----
-*.log
-logs/
-tmp/
-temp/
-*.tmp
-*.bak
-
-# ---- 环境与密钥 ----
+# ---- 环境变量与密钥（务必不要提交） ----
 .env
 .env.*
 !.env.example
 *.pem
 *.key
-secrets/
-
-# ---- Node.js ----
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-.pnpm-store/
-dist/
-build/
-.next/
-out/
-coverage/
-.nyc_output/
-*.tsbuildinfo
 
 # ---- Python ----
 __pycache__/
 *.py[cod]
-*$py.class
 .venv/
 venv/
 env/
@@ -62,59 +30,33 @@ env/
 .mypy_cache/
 .ruff_cache/
 *.egg-info/
-.eggs/
 htmlcov/
 .coverage
 
-# ---- Java / JVM ----
-target/
-*.class
-*.jar
-!.mvn/wrapper/maven-wrapper.jar
-.gradle/
-
-# ---- Go ----
-*.exe
-*.test
-*.out
-
-# ---- Rust ----
-target/
-Cargo.lock
-
-# ---- 其它构建产物 ----
-bin/
-obj/
-*.o
-*.obj
-*.so
-*.dylib
-*.dll
-
-.ultralytics/
+# ---- 运行时产物 ----
 runs/
-*.pt
-*.jpg
-# YOLO 缓存文件
-*.cache
-
-# Ultralytics 配置
+.ultralytics/
 Ultralytics/
+torchinductor_*/
+*.log
+tmp/
+temp/
 
-# 数据集标注文件（如果只想保留 yaml，就把 txt 也忽略掉）
-datasets/**/*.txt
-# Python 虚拟环境
-.venv/
-
-# YOLO 生成的文件
-runs/
+# ---- 模型权重（体积大，不入库） ----
 *.pt
 *.cache
+
+# ---- 数据集：只保留 yaml 说明，图片与标注不入库 ----
+datasets/**/images/
+datasets/**/*.txt
 *.jpg
-*.png
 
-# Ultralytics 配置文件
-.ultralytics/
+# ---- 前端构建产物 ----
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
 
-# 环境变量
-.env
+# ---- 例外：工程日志里的截图需要入库 ----
+!daily/photo/*.png
