@@ -91,3 +91,16 @@ obj/
 *.dylib
 *.dll
 .env
+
+.ultralytics/
+runs/
+*.pt
+*.jpg
+# YOLO 缓存文件
+*.cache
+
+# Ultralytics 配置
+Ultralytics/
+
+# 数据集标注文件（如果只想保留 yaml，就把 txt 也忽略掉）
+datasets/**/*.txt
