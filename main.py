@@ -3,7 +3,7 @@ import requests
 from dotenv import load_dotenv
 from pydantic import BaseModel
 from fastapi import FastAPI
-# ... 其他 import ...
+from fastapi.middleware.cors import CORSMiddleware
 
 # 1. 加载 .env 文件里的环境变量
 load_dotenv()
@@ -17,7 +17,14 @@ if not DIFY_API_KEY:
     print("❌ 错误：没有找到 DIFY_API_KEY，请检查 .env 文件！")
 
 app = FastAPI()
-# ... 后面代码保持不变 ...
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # 允许所有来源
+    allow_credentials=True,
+    allow_methods=["*"], # 允许所有方法（包含 POST）
+    allow_headers=["*"], # 允许所有请求头
+)
 
 # 定义前端发来的数据格式
 class ChatRequest(BaseModel):
