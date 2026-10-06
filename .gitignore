@@ -90,7 +90,6 @@ obj/
 *.so
 *.dylib
 *.dll
-.env
 
 .ultralytics/
 runs/
@@ -104,3 +103,18 @@ Ultralytics/
 
 # 数据集标注文件（如果只想保留 yaml，就把 txt 也忽略掉）
 datasets/**/*.txt
+# Python 虚拟环境
+.venv/
+
+# YOLO 生成的文件
+runs/
+*.pt
+*.cache
+*.jpg
+*.png
+
+# Ultralytics 配置文件
+.ultralytics/
+
+# 环境变量
+.env

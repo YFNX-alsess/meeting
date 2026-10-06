@@ -21,6 +21,14 @@
 <body>
     <h2>🤖 我的 Dify 助手</h2>
     
+        <!-- 👇 新增：YOLO 图片识别区域 -->
+    <div style="margin-bottom: 20px; padding: 15px; border: 1px dashed #4CAF50; border-radius: 8px; text-align: center;">
+        <h3>🖼️ YOLO 图片识别</h3>
+        <input type="file" id="image-input" accept="image/*" style="margin-bottom: 10px;">
+        <button onclick="uploadImage()" style="background-color: #2196F3;">上传并识别</button>
+        <div id="yolo-result" style="margin-top: 15px; font-weight: bold; color: #333;"></div>
+    </div>
+
     <div id="chat-box">
         <!-- 聊天记录会动态显示在这里 -->
     </div>
@@ -73,6 +81,48 @@
 
         function handleKeyPress(event) {
             if (event.key === 'Enter') sendMessage();
+        }
+                // 👇 新增：处理图片上传和识别
+        async function uploadImage() {
+            const fileInput = document.getElementById('image-input');
+            const resultDiv = document.getElementById('yolo-result');
+            
+            if (!fileInput.files || fileInput.files.length === 0) {
+                resultDiv.innerText = "⚠️ 请先选择一张图片！";
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("file", file); // 对应后端接口参数名 file
+
+            resultDiv.innerText = "⏳ 正在识别中，请稍候...";
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/detect', {
+                    method: 'POST',
+                    body: formData // 注意：这里不用设置 Content-Type，浏览器会自动处理
+                });
+
+                const data = await response.json();
+                
+                if (data.detections && data.detections.length > 0) {
+                    let text = "🎯 识别结果：\n";
+                    data.detections.forEach(item => {
+                        text += `- ${item.class} (置信度: ${item.confidence})\n`;
+                    });
+                    resultDiv.innerText = text;
+                    resultDiv.style.color = "#4CAF50";
+                } else {
+                    resultDiv.innerText = "🙁 未识别到任何目标物体。";
+                    resultDiv.style.color = "#ff9800";
+                }
+
+            } catch (error) {
+                console.error(error);
+                resultDiv.innerText = "❌ 识别失败，请检查后端服务是否开启。";
+                resultDiv.style.color = "red";
+            }
         }
     </script>
 </body>

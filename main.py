@@ -1,8 +1,16 @@
 import os
+os.environ['YOLO_CONFIG_DIR'] = os.path.join(os.getcwd(), '.ultralytics')
+
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import JSONResponse
+import io
+from PIL import Image
+import numpy as np
+from ultralytics import YOLO
+
 import requests
 from dotenv import load_dotenv
 from pydantic import BaseModel
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # 1. 加载 .env 文件里的环境变量
@@ -56,3 +64,35 @@ async def chat_with_dify(request: ChatRequest):
         print(f"❌ Dify 接口报错！状态码：{response.status_code}")
         print(f"❌ 错误详情：{response.text}")
         return {"reply": f"Dify报错了！状态码：{response.status_code}，错误信息：{response.text}"}
+
+YOLO_MODEL_PATH = "runs/detect/runs/train/my_second_train/weights/best.pt" 
+yolo_model = YOLO(YOLO_MODEL_PATH)
+
+@app.post("/api/detect")
+async def detect_objects(file: UploadFile = File(...)):
+    # 1. 读取前端上传的图片
+    image_data = await file.read()
+    image = Image.open(io.BytesIO(image_data))
+    
+    # 2. 调用 YOLO 模型进行推理
+    # 注意：YOLO 接收 numpy 数组格式的图片
+    results = yolo_model(np.array(image))
+    
+    # 3. 解析推理结果
+    detections = []
+    for result in results:
+        for box in result.boxes:
+            # 提取坐标、置信度和类别
+            x1, y1, x2, y2 = box.xyxy[0].tolist()
+            conf = float(box.conf[0])
+            cls_id = int(box.cls[0])
+            cls_name = result.names[cls_id]
+            
+            detections.append({
+                "class": cls_name,
+                "confidence": round(conf, 2),
+                "bbox": [round(x1), round(y1), round(x2), round(y2)]
+            })
+
+    # 4. 返回 JSON 结果
+    return JSONResponse(content={"detections": detections})
