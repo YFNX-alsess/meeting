@@ -3,6 +3,7 @@
 输入：--image 图片路径；缺省时自动取 datasets/coco8/images/val 里的第一张
 输出：runs/detect/<任务名>/ 下的带框图片 + 终端打印的类别与置信度
 运行：python -m scripts.predict --image datasets/coco8/images/val/000000000042.jpg
+来源：原根目录 predict_yolo.py，修正了注释与实际加载权重不一致的问题。
 """
 
 from __future__ import annotations

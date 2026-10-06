@@ -3,6 +3,7 @@
 输入：PIL.Image
 输出：list[dict]（class / confidence / bbox），或在不可用时抛出 ModelUnavailable
 约定：本模块不接触 FastAPI，不做上传校验（那是路由层的职责），权重缺失也不阻止进程启动。
+来源：原根目录 main.py 第 68-69 行的模型加载与第 71-98 行的推理代码。
 """
 
 from __future__ import annotations

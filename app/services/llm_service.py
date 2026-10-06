@@ -5,6 +5,7 @@
 约定：不接触 FastAPI 的 Request/Response，所有失败统一抛 DifyError，由路由层翻译成 HTTP/SSE 事件。
 注意：默认绕过系统代理（trust_env=False）。Windows 注册表里的系统代理会劫持 127.0.0.1 请求，
       表现为"连接本地 Dify 却返回 404"；确实需要经代理访问远程 Dify 时设 DIFY_TRUST_ENV=1。
+来源：原根目录 main.py 第 41-66 行的 Dify 调用，由同步 requests 改为异步 httpx 并支持流式。
 """
 
 from __future__ import annotations

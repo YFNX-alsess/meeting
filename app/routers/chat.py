@@ -3,6 +3,7 @@
 输入：ChatRequest（JSON）或 query 查询参数
 输出：阻塞式为 ChatReply；订阅式为 text/event-stream，事件名 delta / done / failed
 约定：前端只订阅事件流，不感知 Dify；Dify 的错误在这里被翻译成结构化错误，不外泄原始报文。
+来源：原根目录 main.py 的 POST /api/chat；SSE 订阅端点为重构新增。
 """
 
 from __future__ import annotations

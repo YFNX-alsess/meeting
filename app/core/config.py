@@ -3,6 +3,7 @@
 输入：根目录 .env 文件 + 进程环境变量
 输出：settings 单例（Dify 凭证、模型路径、静态目录、上传上限、跨域白名单）
 约定：其它模块一律 ``from app.core.config import settings``，不得再直接调用 os.environ。
+来源：原根目录 main.py 第 1-2 行与第 16-25 行；原先散落在三个脚本里的 YOLO_CONFIG_DIR 收敛到这里。
 """
 
 from __future__ import annotations

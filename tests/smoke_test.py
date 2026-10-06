@@ -3,6 +3,7 @@
 输入：无；若配置了可用权重（YOLO_MODEL_PATH 或 runs/ 下已有 best.pt）会额外验证真实推理
 输出：终端逐条 PASS/FAIL，全部通过时退出码为 0
 运行：python -m tests.smoke_test
+来源：重构新增（重构前项目没有任何测试）。
 """
 
 from __future__ import annotations

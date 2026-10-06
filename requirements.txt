@@ -1,5 +1,7 @@
 # 直接依赖清单（Python 3.14，版本锁定）
 # 安装：pip install -r requirements.txt
+# 说明：原文件为 UTF-16LE 带 BOM（pip 无法解析），已转 UTF-8；
+#      并去掉整机 pip freeze 的传递依赖，requests 已不再使用（改用 httpx）。
 fastapi==0.142.2
 uvicorn==0.54.0
 python-multipart==0.0.32

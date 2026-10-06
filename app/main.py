@@ -3,6 +3,7 @@
 输入：环境变量 / .env（经由 app/core/config.py）
 输出：FastAPI 应用实例
 启动：uvicorn app.main:app --reload
+来源：原根目录 main.py 的应用创建与 CORS 部分，业务逻辑已拆分到 core / services / routers。
 """
 
 from __future__ import annotations

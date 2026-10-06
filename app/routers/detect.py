@@ -3,6 +3,7 @@
 输入：multipart/form-data，字段名 file（图片）
 输出：DetectResponse；错误时返回带 HTTP 状态码的标准错误体
 错误约定：非图片 400 / 超过大小限制 413 / 无权重 503 / 推理异常 500
+来源：原根目录 main.py 的 POST /api/detect，重构后补齐入参校验与标准错误状态码。
 """
 
 from __future__ import annotations

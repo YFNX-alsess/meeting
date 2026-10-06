@@ -2,6 +2,7 @@
  * 页面逻辑：只负责 UI 组织与订阅回调绑定。
  *
  * 约定：本文件不做 HTTP 细节（交给 api.js），也不用 innerHTML 拼接数据（统一 textContent，防 XSS）。
+ * 来源：原 index.html 内联脚本中的界面部分，现与网络代码分离。
  */
 (function () {
     "use strict";

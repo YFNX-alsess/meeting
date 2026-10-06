@@ -3,6 +3,7 @@
 输入：--query 要问的问题；--blocking 切换为一次性返回（默认流式逐段打印）
 输出：终端打印回答；配置或网络异常时打印可读原因并以非 0 退出
 运行：python -m scripts.ask_dify --query "你好"
+来源：原根目录 TAsk_1.py，改为复用 app/services 的 Dify 客户端并支持流式输出。
 """
 
 from __future__ import annotations

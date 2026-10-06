@@ -3,6 +3,7 @@
  *
  * 约定：app.js 只调用这里暴露的方法，不允许直接写 fetch / EventSource；
  *      后端地址只在这里解析一次，页面其它位置不再出现端口号。
+ * 来源：原 index.html 内联脚本中的请求部分；事件订阅（SSE）为重构新增。
  */
 (function (global) {
     "use strict";

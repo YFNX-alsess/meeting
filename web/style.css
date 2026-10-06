@@ -1,6 +1,7 @@
 /*
  * 样式表：仅负责外观，不含任何行为。
  * 类名与 index.html / app.js 保持一致：.panel / .chat-box / .message / .result / .status
+ * 来源：原 index.html 的 <style> 块，并补充状态栏、结果列表等新增元素的样式。
  */
 
 body {

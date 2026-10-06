@@ -3,6 +3,7 @@
 输入：命令行参数（数据集 yaml、轮数、批大小、设备、任务名），均有默认值
 输出：runs/train/<任务名>/weights/best.pt，并打印被后端自动选中的权重路径
 运行：python -m scripts.train --epochs 30
+来源：原根目录 train_yolo.py，改为复用 app/core 的配置并支持命令行参数。
 """
 
 from __future__ import annotations

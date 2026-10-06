@@ -3,6 +3,7 @@
 输入：无
 输出：HealthResponse（两个依赖服务是否就绪）
 约定：不做任何重型操作，保证毫秒级返回。
+来源：重构新增，用于让前端启动时就知道权重与 Dify 是否就绪。
 """
 
 from __future__ import annotations
